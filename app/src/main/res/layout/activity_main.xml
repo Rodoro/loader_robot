@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="IP address:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edAddIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="192.169.0.10:80"/>
+
+    <Button
+        android:id="@+id/bConnect"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="90dp"
+        android:onClick="bConnect"
+        android:text="Подключится"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bTurn"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="90dp"
+        android:onClick="bTurn"
+        android:text="Включить"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/terminal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="80dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/bCargo1"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Винты" />
+
+            <Switch
+                android:id="@+id/bCargo2"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Гайки" />
+
+            <Switch
+                android:id="@+id/bCargo3"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Шайбы" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/bCargo4"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Шпильки" />
+
+            <Switch
+                android:id="@+id/bCargo5"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Подшивники" />
+
+            <Switch
+                android:id="@+id/bCargo6"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Линейные направляющие" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/bCargo7"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Валы" />
+
+            <Switch
+                android:id="@+id/bCargo8"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Двигатели" />
+
+            <Switch
+                android:id="@+id/bCargo9"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Датчики" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/bOrder"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginBottom="14dp"
+        android:onClick="bOrder"
+        android:text="Сделать заказ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bRecognize"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="14dp"
+        android:onClick="bRecognize"
+        android:text="Распознания"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
