@@ -60,12 +60,12 @@
 
     <LinearLayout
         android:id="@+id/buttons"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="383dp"
+        android:layout_height="338dp"
         android:orientation="vertical"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,23 +75,26 @@
             <Switch
                 android:id="@+id/bCargo1"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Винты" />
+                android:text="Винты"
+                android:textSize="12sp" />
 
             <Switch
                 android:id="@+id/bCargo2"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Гайки" />
+                android:text="Гайки"
+                android:textSize="12sp" />
 
             <Switch
                 android:id="@+id/bCargo3"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Шайбы" />
+                android:text="Шайбы"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -103,23 +106,26 @@
             <Switch
                 android:id="@+id/bCargo4"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Шпильки" />
+                android:text="Шпильки"
+                android:textSize="12sp" />
 
             <Switch
                 android:id="@+id/bCargo5"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Подшивники" />
+                android:text="Подшипники"
+                android:textSize="12sp" />
 
             <Switch
                 android:id="@+id/bCargo6"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Линейные направляющие" />
+                android:text="Лин.направ."
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -131,23 +137,26 @@
             <Switch
                 android:id="@+id/bCargo7"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Валы" />
+                android:text="Валы"
+                android:textSize="12sp" />
 
             <Switch
                 android:id="@+id/bCargo8"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Двигатели" />
+                android:text="Двигатели"
+                android:textSize="12sp" />
 
             <Switch
                 android:id="@+id/bCargo9"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                android:text="Датчики" />
+                android:text="Датчики"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
