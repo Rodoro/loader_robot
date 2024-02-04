@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences pref;
+    String[] countries = { "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         postInfo("info");
+
+        ListView countriesList = findViewById(R.id.countriesList);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, countries);
+        countriesList.setAdapter(adapter);
     }
 
     public void bConnect(View view) {
@@ -57,12 +65,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void bRecognize(View view) {
         LinearLayout layoutB = findViewById(R.id.buttons);
+        Button button = findViewById(R.id.bOrder);
         LinearLayout layoutT = findViewById(R.id.terminal);
 
         if(layoutB.getVisibility() == View.VISIBLE) {
+            button.setVisibility(View.GONE);
             layoutB.setVisibility(View.GONE);
             layoutT.setVisibility(View.VISIBLE);
         } else {
+            button.setVisibility(View.VISIBLE);
             layoutB.setVisibility(View.VISIBLE);
             layoutT.setVisibility(View.GONE);
         }
@@ -79,15 +90,15 @@ public class MainActivity extends AppCompatActivity {
         Switch switch8 = findViewById(R.id.bCargo8);
         Switch switch9 = findViewById(R.id.bCargo9);
 
-        postOrder("order?1=" + switch1.isChecked() +
-                "&2=" + switch2.isChecked() +
-                "&3=" + switch3.isChecked() +
-                "&4=" + switch4.isChecked() +
-                "&5=" + switch5.isChecked() +
-                "&6=" + switch6.isChecked() +
-                "&7=" + switch7.isChecked() +
-                "&8=" + switch8.isChecked() +
-                "&9=" + switch9.isChecked());
+        postOrder("order?1=" + Boolean.toString(switch1.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch1.isChecked()).substring(1).toLowerCase() +
+                "&2=" + Boolean.toString(switch2.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch2.isChecked()).substring(1).toLowerCase() +
+                "&3=" + Boolean.toString(switch3.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch3.isChecked()).substring(1).toLowerCase() +
+                "&4=" + Boolean.toString(switch4.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch4.isChecked()).substring(1).toLowerCase() +
+                "&5=" + Boolean.toString(switch5.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch5.isChecked()).substring(1).toLowerCase() +
+                "&6=" + Boolean.toString(switch6.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch6.isChecked()).substring(1).toLowerCase() +
+                "&7=" + Boolean.toString(switch7.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch7.isChecked()).substring(1).toLowerCase() +
+                "&8=" + Boolean.toString(switch8.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch8.isChecked()).substring(1).toLowerCase() +
+                "&9=" + Boolean.toString(switch9.isChecked()).substring(0,1).toUpperCase() + Boolean.toString(switch9.isChecked()).substring(1).toLowerCase());
     }
 
     private void postConnect(String post) {

@@ -49,14 +49,35 @@
 
     <LinearLayout
         android:id="@+id/terminal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="386dp"
+        android:layout_height="597dp"
         android:orientation="vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginBottom="80dp"
-        android:visibility="gone"/>
+
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="139dp"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/countriesList"
+            android:layout_width="380dp"
+            android:layout_height="531dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="139dp">
+        </ListView>
+
+        <Button
+            android:id="@+id/bClear"
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginBottom="14dp"
+            android:onClick="bClear"
+            android:text="Очистить"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/buttons"
@@ -171,7 +192,6 @@
         android:text="Сделать заказ"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/bRecognize"
         android:layout_width="180dp"
