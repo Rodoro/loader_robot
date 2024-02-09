@@ -12,7 +12,7 @@ isConnect = False
 orders = []
 cargos = ["Vinti","Gauki","Shuibi","Shpilki","Podshipniki","Lineini napravlashie","Vali","Dvigatel","Datchiki"]
 cucle = 1
-recognition_cargo = ''
+recognition_cargo = 'null'
 position_cargo = 0
 
 IO.setwarnings(False)
@@ -54,7 +54,7 @@ def launch():
             isLaunch = False
             IO.output(pinLedR, 0)
             IO.output(pinLedG, 1)
-            set_angle(-15, servo_pin3)
+            set_angle(0, servo_pin3)
             display.lcd_clear()
             rec()
             catch()
@@ -63,7 +63,7 @@ def launch():
             isLaunch = True
             IO.output(pinLedR, 1)
             IO.output(pinLedG, 0)
-            set_angle(-15, servo_pin3)
+            set_angle(0, servo_pin3)
             posZero(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
             move3(0, in1, in2, en_a)
             display.lcd_clear()
@@ -113,36 +113,37 @@ def info():
     return str(isConnect*1) + str(isLaunch*1)
 
 def recServo():
-    global position_cargo, display, cargos
-    posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
-    time.sleep(3)#1
+    global position_cargo, display, cargos, recognition_cargo
+    #posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+    #time.sleep(3)#1
+    set_angle_two_servo(-70, servo_pin2, servo_pin1)
+    set_angle_two_servo(55, servo_pin5, servo_pin4)
+    time.sleep(3)
     display.lcd_clear()
     display.lcd_display_string(str(cargos[position_cargo]), 2)
     recognition_cargo = cargos[position_cargo]
     position_cargo += 1
 
-    posZero(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
-    time.sleep(3)#нач поз
-
-    posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
-    time.sleep(3)#2
+    #posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+    #time.sleep(3)#2
+    set_angle_two_servo(-70, servo_pin2, servo_pin1)
+    set_angle_two_servo(35, servo_pin5, servo_pin4)
+    time.sleep(3)    
     display.lcd_clear()
     display.lcd_display_string(str(cargos[position_cargo]), 2)
     recognition_cargo = cargos[position_cargo]
     position_cargo += 1
 
-    posZero(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
-    time.sleep(3)#нач поз
-
-    posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
-    time.sleep(3)#3
+    #posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+    #time.sleep(3)#3
+    set_angle_two_servo(-70, servo_pin2, servo_pin1)
+    set_angle_two_servo(20, servo_pin5, servo_pin4)
+    time.sleep(3)
     display.lcd_clear()
     display.lcd_display_string(str(cargos[position_cargo]), 2)
     recognition_cargo = cargos[position_cargo]
     position_cargo += 1
 
-    posZero(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
-    time.sleep(3)#нач поз
     display.lcd_clear()
 
 
@@ -161,6 +162,7 @@ def rec():
     move3(3, in1, in2, en_a)
     recServo()
     time.sleep(1)
+    posZero(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
     move3(0, in1, in2, en_a)
 
 def catch():
@@ -172,7 +174,7 @@ def catch():
             if orders[i] == "True":
                 if i in [0, 1, 2]:
                     move3(1, in1, in2, en_a)
-                    set_angle(15, servo_pin3)
+                    set_angle(20, servo_pin3)
                     time.sleep(1)
                     if i in [0]:
                         posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
@@ -182,7 +184,7 @@ def catch():
                         posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
                 elif i in [3, 4, 5]:
                     move3(2, in1, in2, en_a)
-                    set_angle(15, servo_pin3)
+                    set_angle(20, servo_pin3)
                     if i in [3]:
                         posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
                     elif i in [4]:
@@ -191,7 +193,7 @@ def catch():
                         posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
                 elif i in [6, 7, 8]:
                     move3(3, in1, in2, en_a)
-                    set_angle(15, servo_pin3)
+                    set_angle(20, servo_pin3)
                     if i in [6]:
                         posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
                     elif i in [7]:
@@ -200,15 +202,15 @@ def catch():
                         posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
 
                 time.sleep(1)
-                set_angle(-15, servo_pin3)
+                set_angle(0, servo_pin3)
                 time.sleep(2)
                 posZero(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
                 time.sleep(3)
                 move3(0, in1, in2, en_a)
                 time.sleep(1)
-                set_angle(15, servo_pin3)
+                set_angle(20, servo_pin3)
                 time.sleep(2)
-                set_angle(-15, servo_pin3)
+                set_angle(0, servo_pin3)
 
 if __name__ == '__main__':
     try:

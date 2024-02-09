@@ -51,34 +51,33 @@ def servo_start(servo_pin1, servo_pin2, servo_pin3, servo_pin4):
     pwm4.stop()
     
 def posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4):
-    n1=-90
-    n2=65
-    while n1!=45 and n2!=-20:
-        set_angle_two_servo(n2, servo_pin5, servo_pin4)
+    n1=-70
+    n2=40
+    while n1!=45 and n2!=-15:
         set_angle_two_servo(n1, servo_pin2, servo_pin1)
+        set_angle_two_servo(n2, servo_pin5, servo_pin4)
         
-        n1+=27
-        n2-=17
+        n1+=23
+        n2-=11
 
 def posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4):
-    n1=-90
-    n2=65
+    n1=-70
+    n2=40
     while n1!=45 and n2!=-45:
         set_angle_two_servo(n1, servo_pin2, servo_pin1)
         set_angle_two_servo(n2, servo_pin5, servo_pin4)
-        n1+=27
-        n2-=22
+        n1+=23
+        n2-=17
 
 def posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4):
-    n1=-90
-    n2=65
-    while n1!=45 and n2!=-45:
-        set_angle_two_servo(n1, servo_pin2, servo_pin1)
+    n1=-70
+    n2=40
+    while n1!=45 and n2!=-70:
         set_angle_two_servo(n2, servo_pin5, servo_pin4)
-        n1+=27
+        set_angle_two_servo(n1, servo_pin2, servo_pin1)
+        n1+=23
         n2-=22
 
 def posZero(servo_pin2, servo_pin1, servo_pin5, servo_pin4):
-    set_angle_two_servo(-30, servo_pin2, servo_pin1)
-    time.sleep(1)
-    set_angle_two_servo(40, servo_pin5, servo_pin4)
+    set_angle_two_servo(-70, servo_pin2, servo_pin1)#-30
+    set_angle_two_servo(40, servo_pin5, servo_pin4)#40
