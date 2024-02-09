@@ -20,10 +20,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences pref;
-    String[] countries = { "Бразилия", "Аргентина", "Колумбия", "Чили", "Уругвай"};
+    ArrayList<String> cargos = new ArrayList<String>();
+    ArrayAdapter<String> adapter;
+    ListView cargosList;
+    private Timer timer;
+    String cargo = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +47,49 @@ public class MainActivity extends AppCompatActivity {
         }
         postInfo("info");
 
-        ListView countriesList = findViewById(R.id.countriesList);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, countries);
-        countriesList.setAdapter(adapter);
+        cargosList = findViewById(R.id.countriesList);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, cargos);
+        cargosList.setAdapter(adapter);
+
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                try{
+                    EditText editText = findViewById(R.id.edAddIp);
+                    URL url = new URL("http://" + editText.getText().toString() + "/recognition");
+                    HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+                    if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        connection.connect();
+
+                        InputStream stream = connection.getInputStream();
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+
+                        StringBuffer buffer = new StringBuffer();
+                        String line = "";
+
+                        while((line = reader.readLine()) != null){
+                            buffer.append(line).append("\n");
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                String value = buffer.toString();
+                                if (value == cargo) return;
+                                adapter.add(value);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    } else {
+                        System.out.println(0);
+                    }
+                } catch(MalformedURLException e){
+                    e.printStackTrace();
+                }catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 0, 5000);
     }
 
     public void bConnect(View view) {
@@ -57,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
             postConnect("connect");
         }
+    }
+
+    public void bClear(View view) {
+        adapter.clear();
+        adapter.notifyDataSetChanged();
     }
 
     public void bTurn(View view){
