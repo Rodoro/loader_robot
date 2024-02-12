@@ -51,12 +51,12 @@ def launch():
     global isLaunch, isConnect
     if (not isConnect):
         if (isLaunch):
-            isLaunch = False
             IO.output(pinLedR, 0)
             IO.output(pinLedG, 1)
             set_angle(0, servo_pin3)
             display.lcd_clear()
             rec()
+            isLaunch = False
             catch()
             return "Запущен"
         else:
@@ -116,8 +116,13 @@ def recServo():
     global position_cargo, display, cargos, recognition_cargo
     #posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
     #time.sleep(3)#1
+<<<<<<< HEAD
+    set_angle_two_servo(-30, servo_pin2, servo_pin1)
+    set_angle_two_servo(65, servo_pin5, servo_pin4)
+=======
     set_angle_two_servo(-70, servo_pin2, servo_pin1)
     set_angle_two_servo(55, servo_pin5, servo_pin4)
+>>>>>>> 898a6b57e13d51fac0c02abd09563e14a9898f6f
     time.sleep(3)
     display.lcd_clear()
     display.lcd_display_string(str(cargos[position_cargo]), 2)
@@ -174,31 +179,49 @@ def catch():
             if orders[i] == "True":
                 if i in [0, 1, 2]:
                     move3(1, in1, in2, en_a)
+<<<<<<< HEAD
+                    set_angle(23, servo_pin3)
+=======
                     set_angle(20, servo_pin3)
+>>>>>>> 898a6b57e13d51fac0c02abd09563e14a9898f6f
                     time.sleep(1)
                     if i in [0]:
-                        posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+                        posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
                     elif i in [1]:
-                        posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+                        posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
                     elif i in [2]:
-                        posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+                        posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
                 elif i in [3, 4, 5]:
                     move3(2, in1, in2, en_a)
+<<<<<<< HEAD
+                    set_angle(23, servo_pin3)
+=======
                     set_angle(20, servo_pin3)
+>>>>>>> 898a6b57e13d51fac0c02abd09563e14a9898f6f
                     if i in [3]:
-                        posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+                        posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
                     elif i in [4]:
-                        posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+                        posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
                     elif i in [5]:
-                        posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+                        posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
                 elif i in [6, 7, 8]:
                     move3(3, in1, in2, en_a)
+<<<<<<< HEAD
+                    set_angle(23, servo_pin3)
+=======
                     set_angle(20, servo_pin3)
+>>>>>>> 898a6b57e13d51fac0c02abd09563e14a9898f6f
                     if i in [6]:
-                        posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+                        posUp(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
                     elif i in [7]:
-                        posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
+                        posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
                     elif i in [8]:
+<<<<<<< HEAD
+                        posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4, servo_pin3)
+                set_angle(0, servo_pin3)
+                move3(0, in1, in2, en_a)
+                time.sleep(1)
+=======
                         posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
 
                 time.sleep(1)
@@ -211,6 +234,7 @@ def catch():
                 set_angle(20, servo_pin3)
                 time.sleep(2)
                 set_angle(0, servo_pin3)
+>>>>>>> 898a6b57e13d51fac0c02abd09563e14a9898f6f
 
 if __name__ == '__main__':
     try:
