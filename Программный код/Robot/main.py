@@ -5,6 +5,9 @@ import sys
 import time
 import RPi.GPIO as IO
 import drivers
+import picamera
+from PIL import Image
+from pyzbar import pyzbar
 
 app = Flask(__name__)
 isLaunch = False
@@ -37,6 +40,10 @@ en_a = 7
 display = drivers.Lcd()
 
 test = []
+
+hqCamera = picamera.PiCamera()
+
+stream = io.BytesIO()
 
 IO.setup(in1,IO.OUT)
 IO.setup(in2,IO.OUT)
@@ -125,9 +132,9 @@ def recServo():
 >>>>>>> 898a6b57e13d51fac0c02abd09563e14a9898f6f
     time.sleep(3)
     display.lcd_clear()
-    display.lcd_display_string(str(cargos[position_cargo]), 2)
-    recognition_cargo = cargos[position_cargo]
-    position_cargo += 1
+    capture_image() 
+    display.lcd_display_string(str(process_image()), 2)
+    recognition_cargo = process_image()
 
     #posMd(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
     #time.sleep(3)#2
@@ -135,9 +142,9 @@ def recServo():
     set_angle_two_servo(35, servo_pin5, servo_pin4)
     time.sleep(3)    
     display.lcd_clear()
-    display.lcd_display_string(str(cargos[position_cargo]), 2)
-    recognition_cargo = cargos[position_cargo]
-    position_cargo += 1
+    capture_image() 
+    display.lcd_display_string(str(process_image()), 2)
+    recognition_cargo = process_image()
 
     #posBt(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
     #time.sleep(3)#3
@@ -145,9 +152,9 @@ def recServo():
     set_angle_two_servo(20, servo_pin5, servo_pin4)
     time.sleep(3)
     display.lcd_clear()
-    display.lcd_display_string(str(cargos[position_cargo]), 2)
-    recognition_cargo = cargos[position_cargo]
-    position_cargo += 1
+    capture_image() 
+    display.lcd_display_string(str(process_image()), 2)
+    recognition_cargo = process_image()
 
     display.lcd_clear()
 
@@ -169,6 +176,20 @@ def rec():
     time.sleep(1)
     posZero(servo_pin2, servo_pin1, servo_pin5, servo_pin4)
     move3(0, in1, in2, en_a)
+
+def capture_image():
+    hqCamera.start_preview()
+    time.sleep(2)
+    hqCamera.capture(stream, format='jpeg')
+    hqCamera.stop_preview()
+    stream.seek(0)
+def process_image():
+    image = Image.open(stream)
+    barcodes = pyzbar.decode(image)
+    for barcode in barcodes:
+        qrcode_data = barcode.data.decode("utf-8")
+        qrcode_type = barcode.type
+        print(f"Распознанный QR-код: {qrcode_data}, Тип: {qrcode_type}")
 
 def catch():
     global orders, test
